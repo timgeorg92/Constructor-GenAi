@@ -48,7 +48,7 @@
         let hfModel = localStorage.getItem('hfModel') || sessionStorage.getItem('hfModel') || 'mistralai/Mistral-7B-Instruct-v0.2';
         let chatModel = (sessionStorage.getItem('chatModel') || 'gpt-3.5');
         let openrouterKey = localStorage.getItem('openrouterKey') || sessionStorage.getItem('openrouterKey') || '';
-        let openrouterModel = localStorage.getItem('openrouterModel') || sessionStorage.getItem('openrouterModel') || 'openrouter/cognitive-compute/llama-3-8b-instruct';
+        let openrouterModel = sessionStorage.getItem('openrouterModel') || 'openai/gpt-3.5-turbo';
         // При открытии чата очищаем старый контекст
         sessionStorage.removeItem('chatHistory');
         sessionStorage.removeItem('ragChunks');
