@@ -4,34 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Self-Service Ai</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        body { font-family: Arial, sans-serif; background: #f7f7fa; margin: 0; padding: 0; }
-        .container { max-width: 500px; margin: 40px auto; background: #fff; border-radius: 12px; box-shadow: 0 2px 12px #0001; padding: 32px; }
-        h1 { text-align: center; font-size: 2rem; margin-bottom: 12px; }
-        .desc { color: #555; text-align: center; margin-bottom: 24px; }
-        .btn { display: block; width: 100%; background: #4f8cff; color: #fff; border: none; border-radius: 8px; padding: 14px; font-size: 1.1rem; cursor: pointer; margin-bottom: 24px; transition: background 0.2s; }
-        .btn:hover { background: #2563eb; }
-        .step { margin-top: 24px; }
-        label { font-weight: bold; display: block; margin-bottom: 6px; }
-        textarea, input[type="file"] { width: 100%; border-radius: 6px; border: 1px solid #ccc; padding: 8px; font-size: 1rem; }
-        textarea { min-height: 80px; }
-        .footer { text-align: center; color: #aaa; margin-top: 32px; font-size: 0.95rem; }
-        .nav-btns { display: flex; justify-content: space-between; gap: 10px; }
+        body {
+            font-family: 'Montserrat', Arial, sans-serif;
+            background: linear-gradient(135deg, #6a82fb 0%, #fc5c7d 100%);
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 540px;
+            margin: 48px auto 0 auto;
+            background: rgba(255,255,255,0.85);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px #6a82fb44, 0 2px 12px #fc5c7d22;
+            padding: 40px 32px 32px 32px;
+            position: relative;
+            overflow: hidden;
+        }
+        .logo-wow {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+        .logo-wow-emoji {
+            font-size: 3.2rem;
+            filter: drop-shadow(0 0 16px #6a82fb88);
+            animation: logo-bounce 1.6s infinite alternate cubic-bezier(.6,1.6,.6,1);
+        }
+        @keyframes logo-bounce {
+            0% { transform: scale(1) translateY(0); }
+            100% { transform: scale(1.08) translateY(-8px); }
+        }
+        .logo-wow-title {
+            font-size: 2.1rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            color: #222;
+            margin-top: 6px;
+            margin-bottom: 2px;
+            text-align: center;
+        }
+        .logo-wow-slogan {
+            color: #6a82fb;
+            font-size: 1.13rem;
+            font-weight: 500;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        .btn-wow {
+            display: block;
+            width: 100%;
+            background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            padding: 18px;
+            font-size: 1.25rem;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 32px;
+            box-shadow: 0 4px 24px #6a82fb44, 0 1.5px 6px #fc5c7d22;
+            transition: background 0.2s, box-shadow 0.2s, transform 0.18s;
+            position: relative;
+            overflow: hidden;
+        }
+        .btn-wow::after {
+            content: '';
+            position: absolute;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle, #fff6 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .btn-wow:hover {
+            background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
+            box-shadow: 0 8px 32px #fc5c7d55, 0 2px 12px #6a82fb33;
+            transform: scale(1.03);
+        }
+        .btn-wow:hover::after {
+            opacity: 0.18;
+        }
         .tabs { display: flex; gap: 8px; margin-bottom: 18px; }
-        .tab-btn { flex: 1; padding: 12px 0; background: #f1f5fb; border: none; border-radius: 8px 8px 0 0; font-size: 1.08rem; cursor: pointer; color: #4f8cff; font-weight: bold; transition: background 0.2s, color 0.2s; }
-        .tab-btn.active { background: #fff; color: #222; box-shadow: 0 -2px 8px #0001; }
-        .apps-list { display: flex; flex-wrap: wrap; gap: 24px; }
+        .tab-btn { flex: 1; padding: 12px 0; background: #f1f5fb; border: none; border-radius: 12px 12px 0 0; font-size: 1.08rem; cursor: pointer; color: #6a82fb; font-weight: bold; transition: background 0.2s, color 0.2s; }
+        .tab-btn.active { background: #fff; color: #222; box-shadow: 0 -2px 8px #6a82fb22; }
+        .apps-list { display: flex; flex-wrap: wrap; gap: 28px; }
         .app-card {
-            background: #fff;
-            border-radius: 16px;
-            box-shadow: 0 8px 24px #4f8cff22, 0 1.5px 6px #0001;
-            padding: 24px 20px 18px 20px;
+            background: rgba(255,255,255,0.98);
+            border-radius: 18px;
+            box-shadow: 0 8px 32px #6a82fb22, 0 1.5px 6px #fc5c7d11;
+            padding: 28px 22px 20px 22px;
             min-width: 220px;
             max-width: 240px;
             flex: 1 1 220px;
             perspective: 600px;
-            transform: perspective(600px) rotateY(-6deg) scale(1.01);
-            transition: transform 0.2s, box-shadow 0.2s;
+            transform: perspective(600px) rotateY(-4deg) scale(1.01);
+            transition: transform 0.22s, box-shadow 0.22s;
             margin-bottom: 8px;
             display: flex;
             flex-direction: column;
@@ -39,14 +109,14 @@
             position: relative;
         }
         .app-card:hover {
-            transform: perspective(600px) rotateY(6deg) scale(1.04);
-            box-shadow: 0 16px 32px #4f8cff33, 0 2px 8px #0002;
+            transform: perspective(600px) rotateY(4deg) scale(1.04);
+            box-shadow: 0 16px 32px #fc5c7d33, 0 2px 8px #6a82fb22;
             z-index: 2;
         }
         .app-title { font-size: 1.18rem; font-weight: bold; margin-bottom: 6px; }
         .app-meta { color: #888; font-size: 0.97em; margin-bottom: 8px; }
         .app-desc { color: #555; font-size: 1em; margin-bottom: 12px; }
-        .app-link { color: #4f8cff; font-size: 0.99em; text-decoration: none; font-weight: bold; }
+        .app-link { color: #6a82fb; font-size: 0.99em; text-decoration: none; font-weight: bold; }
         .app-link:hover { text-decoration: underline; }
         #avatarPreview img {
             max-width: 64px;
@@ -100,15 +170,18 @@
             align-items: center;
         }
         .modal-content {
-            background: #fff;
-            border-radius: 18px;
-            padding: 32px 28px 24px 28px;
-            max-width: 350px;
+            background: rgba(255,255,255,0.97);
+            border-radius: 28px;
+            padding: 44px 36px 32px 36px;
+            max-width: 400px;
             margin: auto;
-            box-shadow: 0 8px 32px #0002;
+            box-shadow: 0 12px 40px #6a82fb44, 0 2px 12px #fc5c7d22;
             position: relative;
             text-align: center;
             animation: modalIn 0.22s cubic-bezier(.4,1.6,.6,1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
         @keyframes modalIn {
             from { transform: scale(0.92) translateY(30px); opacity: 0; }
@@ -116,31 +189,39 @@
         }
         .close {
             position: absolute;
-            right: 18px; top: 14px;
-            font-size: 2rem;
+            right: 22px; top: 18px;
+            font-size: 2.2rem;
             color: #bbb;
             cursor: pointer;
-            transition: color 0.2s;
+            transition: color 0.2s, background 0.2s;
+            border-radius: 50%;
+            padding: 2px 10px 2px 10px;
         }
-        .close:hover { color: #4f8cff; }
+        .close:hover { color: #fc5c7d; background: #f7f7fa; }
         .modal-avatar {
-            font-size: 3.2rem;
-            margin-bottom: 10px;
+            font-size: 3.5rem;
+            margin-bottom: 16px;
+            background: #fff;
+            border-radius: 50%;
+            width: 74px; height: 74px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 2px 12px #6a82fb22;
         }
         .modal-title {
-            font-size: 1.25rem;
-            font-weight: bold;
+            font-size: 1.35rem;
+            font-weight: 700;
             margin-bottom: 6px;
+            color: #222;
         }
         .modal-date {
             color: #888;
-            font-size: 0.98em;
-            margin-bottom: 12px;
+            font-size: 1.07em;
+            margin-bottom: 14px;
         }
         .modal-desc {
             color: #444;
-            font-size: 1.05em;
-            margin-bottom: 8px;
+            font-size: 1.11em;
+            margin-bottom: 18px;
         }
         .app-card-actions {
             display: flex;
@@ -238,28 +319,303 @@
         .chat-send-btn:hover { background: #2563eb; }
         .modal-actions {
             display: flex;
+            flex-direction: row;
+            gap: 14px;
+            width: 100%;
             justify-content: center;
-            gap: 10px;
-            margin-top: 18px;
-            flex-wrap: wrap;
+            align-items: stretch;
         }
         .modal-actions .btn {
-            flex: 1 1 0;
-            min-width: 120px;
-            max-width: 180px;
-            font-size: 1.08rem;
-            padding: 14px 0;
+            width: 48%;
+            min-width: 0;
+            max-width: none;
+            white-space: normal;
+            word-break: break-word;
+            font-size: 1.13rem;
+            padding: 16px 0;
+            border-radius: 10px;
+            font-weight: bold;
+            border: none;
+            box-shadow: 0 2px 12px #6a82fb22;
+            transition: background 0.2s, color 0.2s, transform 0.18s;
+            background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
+            color: #fff;
+            text-align: center;
         }
         @media (max-width: 500px) {
             .modal-actions {
                 flex-direction: column;
-                gap: 10px;
+                gap: 12px;
             }
             .modal-actions .btn {
                 width: 100%;
-                min-width: 0;
-                max-width: none;
             }
+        }
+        .modal-actions .btn[style*='background:#ffeded'] {
+            background: #ffeded;
+            color: #c00;
+            border: 1.5px solid #c00;
+        }
+        .modal-actions .btn[style*='background:#eee'] {
+            background: #f7f7fa;
+            color: #333;
+            border: 1.5px solid #bbb;
+        }
+        .step-card-wow {
+            background: rgba(255,255,255,0.92);
+            border-radius: 24px;
+            box-shadow: 0 8px 32px #6a82fb33, 0 2px 12px #fc5c7d22;
+            padding: 38px 38px 32px 38px;
+            max-width: 480px;
+            margin: 48px auto 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            animation: fadeInStep 0.7s;
+        }
+        @keyframes fadeInStep {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .step-card-wow h2 {
+            font-size: 2.1rem;
+            font-weight: 700;
+            margin-bottom: 28px;
+            text-align: center;
+            letter-spacing: 0.01em;
+        }
+        .step-card-wow label {
+            font-weight: 700;
+            font-size: 1.08rem;
+            margin-bottom: 8px;
+            color: #222;
+            display: block;
+        }
+        .avatar-choices {
+            margin-bottom: 24px;
+        }
+        .avatar-option {
+            font-size: 2.3rem;
+            width: 62px; height: 62px;
+            border: 2.5px solid transparent;
+            box-shadow: 0 2px 8px #6a82fb11;
+            background: #f7f7fa;
+            transition: border 0.22s, box-shadow 0.22s, background 0.22s;
+        }
+        .avatar-option.selected {
+            border: 2.5px solid #fc5c7d;
+            box-shadow: 0 0 0 6px #fc5c7d22;
+            background: #fff;
+        }
+        #appName, #goal {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 1.13rem;
+            font-weight: 400;
+        }
+        .step-card-wow .nav-btns {
+            display: flex;
+            justify-content: space-between;
+            gap: 18px;
+            width: 100%;
+            margin-top: 10px;
+        }
+        .step-card-wow .btn {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 1.13rem;
+            font-weight: 600;
+            letter-spacing: 0.01em;
+        }
+        .step-card-wow input[type="file"] {
+            background: #f7f7fa;
+            border-radius: 10px;
+            border: 1.5px solid #bcd0ee;
+            padding: 12px;
+            font-size: 1.13rem;
+            margin-bottom: 16px;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 0 2px 8px #6a82fb11;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        .step-card-wow input[type="file"]:focus {
+            border: 1.5px solid #fc5c7d;
+            box-shadow: 0 4px 16px #fc5c7d22;
+        }
+        .step-card-wow #filePreview {
+            background: #f7faff;
+            border-radius: 10px;
+            padding: 12px 14px;
+            margin-top: 14px;
+            font-size: 1.01em;
+            color: #333;
+            max-height: 180px;
+            overflow: auto;
+            box-shadow: 0 2px 8px #6a82fb11;
+        }
+        .step-card-wow #fileSizeAlert {
+            margin: 12px 0 0 0;
+            color: #c00;
+            font-size: 1.07em;
+            display: none;
+            background: #ffeaea;
+            border-radius: 8px;
+            padding: 8px 12px;
+        }
+        .step-card-wow input[type="text"], .step-card-wow textarea {
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 1.13rem;
+            font-weight: 400;
+            border-radius: 10px;
+            border: 1.5px solid #bcd0ee;
+            padding: 14px 12px;
+            margin-bottom: 18px;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 0 2px 8px #6a82fb11;
+            color: #222;
+            transition: border 0.2s, box-shadow 0.2s;
+        }
+        .step-card-wow input[type="text"]:focus, .step-card-wow textarea:focus {
+            border: 1.5px solid #fc5c7d;
+            box-shadow: 0 4px 16px #fc5c7d22;
+            outline: none;
+        }
+        .step-card-wow textarea {
+            min-height: 70px;
+            resize: vertical;
+        }
+        .step-card-wow label {
+            font-weight: 700;
+            font-size: 1.08rem;
+            margin-bottom: 8px;
+            color: #222;
+            display: block;
+        }
+        .step-card-wow .btn {
+            width: 48%;
+            background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 14px 0;
+            font-size: 1.13rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s, box-shadow 0.2s, transform 0.18s;
+            box-shadow: 0 2px 12px #6a82fb22;
+            margin-top: 0;
+        }
+        .step-card-wow .btn:hover {
+            background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
+            box-shadow: 0 4px 16px #fc5c7d33, 0 1.5px 6px #6a82fb22;
+            transform: scale(1.04);
+        }
+        .step-card-wow #openrouterKeySaved, .step-card-wow #openrouterTestResult {
+            font-size: 0.97em;
+            margin-top: 6px;
+            border-radius: 8px;
+            padding: 7px 12px;
+            display: inline-block;
+        }
+        .step-card-wow #openrouterKeySaved {
+            color: #1a7f1a;
+            background: #eaffea;
+        }
+        .step-card-wow #openrouterTestResult {
+            color: #c00;
+            background: #ffeaea;
+        }
+        .footer {
+            text-align: center;
+            color: #111;
+            font-size: 1.01rem;
+            opacity: 1;
+            margin: 32px 0 12px 0;
+        }
+        #goal {
+            min-height: 70px;
+            border-radius: 10px;
+            padding: 14px 12px;
+            border: 1.5px solid #bcd0ee;
+            margin-bottom: 18px;
+            width: 100%;
+            box-sizing: border-box;
+            box-shadow: 0 2px 8px #6a82fb11;
+            font-family: 'Montserrat', Arial, sans-serif;
+            font-size: 1.13rem;
+            font-weight: 400;
+            color: #222;
+            transition: border 0.2s, box-shadow 0.2s;
+            resize: vertical;
+        }
+        #goal:focus {
+            border: 1.5px solid #fc5c7d;
+            box-shadow: 0 4px 16px #fc5c7d22;
+            outline: none;
+        }
+        #goal::placeholder {
+            color: #aaa;
+            font-size: 1.08rem;
+            font-weight: 400;
+        }
+        .step-card-wow .app-summary-wow {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: #f7f7fa;
+            border-radius: 16px;
+            padding: 18px 20px;
+            margin-bottom: 22px;
+            box-shadow: 0 2px 12px #6a82fb11;
+        }
+        .step-card-wow .app-summary-avatar {
+            font-size: 2.7rem;
+            background: #fff;
+            border-radius: 50%;
+            width: 68px; height: 68px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 2px 8px #6a82fb22;
+        }
+        .step-card-wow .app-summary-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+            color: #222;
+        }
+        .step-card-wow .app-summary-desc {
+            color: #555;
+            font-size: 1.05em;
+            margin-bottom: 0;
+        }
+        .step-card-wow .btn {
+            width: 48%;
+            background: linear-gradient(90deg, #6a82fb 0%, #fc5c7d 100%);
+            color: #fff;
+            border: none;
+            border-radius: 10px;
+            padding: 14px 0;
+            font-size: 1.13rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s, box-shadow 0.2s, transform 0.18s;
+            box-shadow: 0 2px 12px #6a82fb22;
+            margin-top: 0;
+        }
+        .step-card-wow .btn:hover {
+            background: linear-gradient(90deg, #fc5c7d 0%, #6a82fb 100%);
+            box-shadow: 0 4px 16px #fc5c7d33, 0 1.5px 6px #6a82fb22;
+            transform: scale(1.04);
+        }
+        .step-card-wow #createMsg {
+            color: #1a7f1a;
+            background: #eaffea;
+            border-radius: 8px;
+            text-align: center;
+            margin-top: 16px;
+            font-size: 1.08rem;
+            display: none;
+            padding: 10px 0;
         }
     </style>
     <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
@@ -345,6 +701,7 @@
                 fullPrompt = `Пользователь загрузил файл. Вот его содержимое:\n${uploadedFullText}\n\n${userPrompt}`;
             }
             sessionStorage.setItem('systemPrompt', fullPrompt);
+            fillStep4Summary();
             showStep(4);
         }
         // На шаге 2 добавим кнопку сброса данных
@@ -766,15 +1123,26 @@
             document.getElementById('myAppsTab').classList.toggle('active', tab === 'my');
             document.getElementById('colleaguesAppsTab').classList.toggle('active', tab === 'colleagues');
         }
+        // Добавляю заполнение summary на шаге 4
+        function fillStep4Summary() {
+            const avatar = document.querySelector('.avatar-option.selected')?.getAttribute('data-avatar') || '🤖';
+            const name = document.getElementById('appName').value || 'Без названия';
+            const desc = document.getElementById('goal').value || '';
+            document.getElementById('summaryAvatar').textContent = avatar;
+            document.getElementById('summaryName').textContent = name;
+            document.getElementById('summaryDesc').textContent = desc;
+        }
     </script>
 </head>
 <body>
     <div class="container">
         <div id="main">
-            <h1>Self-Service Ai</h1>
-            <div style="margin-bottom: 28px;">
-                <button class="btn" onclick="startWizard()">+ Создать новое приложение</button>
+            <div class="logo-wow">
+                <span class="logo-wow-emoji">🤖</span>
+                <div class="logo-wow-title">Self-Service Ai</div>
+                <div class="logo-wow-slogan">Создавай свои AI-приложения</div>
             </div>
+            <button class="btn-wow" onclick="startWizard()">+ Новое приложение</button>
             <div class="tabs">
                 <button class="tab-btn active" id="myAppsTab" onclick="showTab('my')">Мои приложения</button>
                 <button class="tab-btn" id="colleaguesAppsTab" onclick="showTab('colleagues')">Опубликованные приложения</button>
@@ -803,63 +1171,76 @@
             </div>
         </div>
         <div id="step1" class="step" style="display:none;">
-            <h2>Шаг 1: Оформление приложения</h2>
-            <label>Аватарка приложения</label>
-            <div id="avatarChoices" class="avatar-choices" style="margin-bottom:16px;">
-                <div class="avatar-option selected" data-avatar="🤖">🤖</div>
-                <div class="avatar-option" data-avatar="📊">📊</div>
-                <div class="avatar-option" data-avatar="📝">📝</div>
-                <div class="avatar-option" data-avatar="📈">📈</div>
-                <div class="avatar-option" data-avatar="💡">💡</div>
-            </div>
-            <label for="appName">Название приложения</label>
-            <input type="text" id="appName" placeholder="Введите название приложения" style="margin-bottom:14px;">
-            <label for="goal">Для чего вы хотите создать приложение?</label>
-            <textarea id="goal" placeholder="Например: анализировать отзывы клиентов, автоматизировать отчеты, ..."></textarea>
-            <div class="nav-btns">
-                <button class="btn" style="width:48%;" onclick="backToMain()">Назад</button>
-                <button class="btn" style="width:48%;" onclick="toStep2()">Далее</button>
+            <div class="step-card-wow">
+                <h2>Шаг 1: Оформление приложения</h2>
+                <label style="font-weight:600; margin-bottom:10px;">Аватарка приложения</label>
+                <div id="avatarChoices" class="avatar-choices" style="margin-bottom:16px;">
+                    <div class="avatar-option selected" data-avatar="🤖">🤖</div>
+                    <div class="avatar-option" data-avatar="📊">📊</div>
+                    <div class="avatar-option" data-avatar="📝">📝</div>
+                    <div class="avatar-option" data-avatar="📈">📈</div>
+                    <div class="avatar-option" data-avatar="💡">💡</div>
+                </div>
+                <label for="appName">Название приложения</label>
+                <input type="text" id="appName" placeholder="Введите название приложения">
+                <label for="goal">Для чего вы хотите создать приложение?</label>
+                <textarea id="goal" placeholder="Например: анализировать отзывы клиентов, автоматизировать отчеты, ..."></textarea>
+                <div class="nav-btns">
+                    <button class="btn" onclick="backToMain()">Назад</button>
+                    <button class="btn" onclick="toStep2()">Далее</button>
+                </div>
             </div>
         </div>
         <div id="step2" class="step" style="display:none;">
-            <h2>Шаг 2: Загрузите ваши данные</h2>
-            <label for="datafile">Загрузите файл с вашими данными (CSV, TXT, Excel, Word, PDF)</label>
-            <input type="file" id="datafile" accept=".csv,.txt,.xlsx,.xls,.doc,.docx,.pdf">
-            <button class="btn" style="background:#eee; color:#333; margin-top:8px; margin-bottom:8px;" onclick="resetFileData()">Сбросить данные</button>
-            <div id="filePreview" style="background:#f7faff; border-radius:8px; padding:10px 12px; margin-top:12px; font-size:0.98em; color:#333; max-height:180px; overflow:auto;"></div>
-            <div id="fileSizeAlert" style="margin:10px 0 0 0; color:#c00; font-size:1.05em; display:none;"></div>
-            <div class="nav-btns">
-                <button class="btn" style="width:48%;" onclick="backToStep1()">Назад</button>
-                <button class="btn" style="width:48%;" onclick="toStep3()">Далее</button>
+            <div class="step-card-wow">
+                <h2>Шаг 2: Загрузите ваши данные</h2>
+                <label for="datafile" style="font-weight:600; margin-bottom:10px;">Загрузите файл с вашими данными (CSV, TXT, Excel, Word, PDF)</label>
+                <input type="file" id="datafile" accept=".csv,.txt,.xlsx,.xls,.doc,.docx,.pdf">
+                <button class="btn" style="background:#eee; color:#333; margin-top:8px; margin-bottom:8px;" onclick="resetFileData()">Сбросить данные</button>
+                <div id="filePreview"></div>
+                <div id="fileSizeAlert"></div>
+                <div class="nav-btns">
+                    <button class="btn" onclick="backToStep1()">Назад</button>
+                    <button class="btn" onclick="toStep3()">Далее</button>
+                </div>
             </div>
         </div>
         <div id="step3" class="step" style="display:none;">
-            <h2>Шаг 3: Настройте ИИ</h2>
-            <label for="openrouterModel">Модель</label>
-            <input type="text" id="openrouterModel" value="openai/gpt-3.5-turbo" style="width:100%; margin-bottom:10px;">
-            <div id="openrouterKeyBlock" style="margin-top:10px;">
-                <label for="openrouterKey">OpenRouter API-ключ</label>
-                <input type="text" id="openrouterKey" placeholder="Введите OpenRouter API-ключ (org-...)" style="width:100%; margin-bottom:10px;">
-                <button class="btn" type="button" style="width:100%; margin-bottom:8px;" onclick="testOpenRouterKey()">Проверить OpenRouter</button>
-                <div id="openrouterKeySaved" style="color:green; font-size:0.97em; display:none;">Ключ сохранён!</div>
-                <div id="openrouterTestResult" style="font-size:0.97em; margin-top:6px;"></div>
-            </div>
-            <label for="prompt" style="margin-top:14px;">Промпт/инструкция для ИИ</label>
-            <textarea id="prompt" placeholder="Например: Проанализируй данные и выдели основные инсайты..."></textarea>
-            <div class="nav-btns">
-                <button class="btn" style="width:48%;" onclick="backToStep2()">Назад</button>
-                <button class="btn" style="width:48%;" onclick="toStep4()">Далее</button>
+            <div class="step-card-wow">
+                <h2>Шаг 3: Настройте ИИ</h2>
+                <label for="openrouterModel">Модель</label>
+                <input type="text" id="openrouterModel" value="openai/gpt-3.5-turbo">
+                <div id="openrouterKeyBlock" style="margin-top:10px;">
+                    <label for="openrouterKey">OpenRouter API-ключ</label>
+                    <input type="text" id="openrouterKey" placeholder="Введите OpenRouter API-ключ (org-...)">
+                    <button class="btn" type="button" style="width:100%; margin-bottom:8px;" onclick="testOpenRouterKey()">Проверить OpenRouter</button>
+                    <div id="openrouterKeySaved" style="display:none;">Ключ сохранён!</div>
+                    <div id="openrouterTestResult"></div>
+                </div>
+                <label for="prompt" style="margin-top:14px;">Промпт/инструкция для ИИ</label>
+                <textarea id="prompt" placeholder="Например: Проанализируй данные и выдели основные инсайты..."></textarea>
+                <div class="nav-btns">
+                    <button class="btn" onclick="backToStep2()">Назад</button>
+                    <button class="btn" onclick="toStep4()">Далее</button>
+                </div>
             </div>
         </div>
         <div id="step4" class="step" style="display:none;">
-            <h2>Шаг 4: Ваше приложение готово!</h2>
-            <div style="background:#f1f5fb; border-radius:8px; padding:18px; margin-bottom:18px; color:#333;">
-                <b>Демо-режим:</b> Здесь будет результат работы вашего приложения.<br>
-                <span style="color:#888; font-size:0.98em;">(В реальной версии здесь появится вывод ИИ на ваших данных)</span>
+            <div class="step-card-wow">
+                <h2>Шаг 4: Ваше приложение готово!</h2>
+                <div class="app-summary-wow">
+                    <span id="summaryAvatar" class="app-summary-avatar"></span>
+                    <div>
+                        <div id="summaryName" class="app-summary-title"></div>
+                        <div id="summaryDesc" class="app-summary-desc"></div>
+                    </div>
+                </div>
+                <div class="nav-btns">
+                    <button class="btn" onclick="createApp()">Создать приложение</button>
+                    <button class="btn" style="background:#eee; color:#333;" onclick="backToMain()">На главную</button>
+                </div>
+                <div id="createMsg">Приложение создано!</div>
             </div>
-            <button class="btn" style="margin-bottom:12px;" onclick="createApp()">Создать приложение</button>
-            <button class="btn" style="background:#eee; color:#333;" onclick="backToMain()">На главную</button>
-            <div id="createMsg" style="color:green; text-align:center; margin-top:10px; display:none;">Приложение создано!</div>
         </div>
     </div>
     <div class="footer">&copy; 2025 Budtuev GenAi Constructor</div>
